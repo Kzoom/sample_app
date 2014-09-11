@@ -14,3 +14,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+ 
+# Ignore Spring files - conflict w git when using Guard
+# 2014-09-10 ksw... per listing 3.43 in chap 3.7
+/spring/*.pid
