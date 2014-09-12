@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield(:title )%> | Ruby on Rails Tutorial Sample_App</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <!--<title><%= yield(:title )%> | Ruby on Rails Tutorial Sample_App</title>
+  /* 2014-09-11 ksw...update in Chap 4, added helper function 'full_title'  -->
+  
+  <title><%= full_title(yield(:title ))%></title>
+  
+  <%= stylesheet_link_tag 'application',  media: 'all', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
   <%= csrf_meta_tags %>
 </head>
 <body>
