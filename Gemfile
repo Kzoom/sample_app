@@ -45,6 +45,7 @@ group :production do
 	# include PostgreSQL
 	gem 'pg', '0.17.1'
 	gem 'rails_12factor', '0.0.2'
+  gem 'unicorn',  '4.8.3'
 end
 
 # Use ActiveModel has_secure_password
