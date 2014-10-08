@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# 2014-09-25 ksw...commented out per directions at 6.27
+# 14-09-25 ksw...commented out per directions at 6.27
 #one:
 #  name: MyString
 #  email: MyString
@@ -8,3 +8,9 @@
 #two:
 #  name: MyString
 #  email: MyString
+
+# 14-10-01 ksw...for user login/logout tests
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password') %>
