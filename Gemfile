@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 #ruby '2.0.0'
 #ruby-gemset=railstutorial_rails_4_0
 
@@ -45,11 +45,18 @@ group :production do
 	# include PostgreSQL
 	gem 'pg', '0.17.1'
 	gem 'rails_12factor', '0.0.2'
+  # Use unicorn as the app server
   gem 'unicorn',  '4.8.3'
 end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
+# Use faker to create dummy data/users
+gem 'faker',  '1.4.3'
+
+gem 'will_paginate', '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
 
 # Use unicorn as the app server
 # gem 'unicorn'

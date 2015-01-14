@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   #    and the '!' bang makes this even shorter
 	#before_save { self.email = email.downcase}
 	
-	before_save { email.downcase! }
+	#before_save { self.email = email.downcase } # ksw...this works
+	before_save { email.downcase! } # ksw...this does too. From Ex 6.5, #2
 
 	validates :name, presence: true, length: {maximum: 50}
 	
@@ -19,7 +20,7 @@ class User < ActiveRecord::Base
 	                  uniqueness: {case_sensitive: false}
 
 	has_secure_password
-	validates :password, length: { minimum: 6 }
+	validates :password, length: { minimum: 6 }, allow_blank: true 
 
 	# 14-10-01 ksw...returns the hash digest of the given string
 	def User.digest(string)
@@ -44,6 +45,7 @@ class User < ActiveRecord::Base
 		BCrypt::Password.new(remember_digest).is_password?(remember_token)
 	end
 
+  # forget a user, Listing 8.38
 	def forget
 		update_attribute(:remember_digest, nil)
 	end

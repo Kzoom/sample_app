@@ -12,6 +12,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # 14-10-02 ksw...per listing 8.23
+  # s/ return true is test user is logged in
+  # always returns True to test that's expecting it to be logged out.
   def is_logged_in?
   	!session[:user_id].nil?
   end

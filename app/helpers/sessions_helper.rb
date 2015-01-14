@@ -17,7 +17,7 @@ module SessionsHelper
 	#returns current logged-in user, if any
 	def current_user
 		if (user_id = session[:user_id]) # actually assigns if session value exists
-			@current_user ||= User.find_by(id: user_id) #syntax like += 
+			@current_user ||= User.find_by(id: session[:user_id]) #syntax like += 
 		elsif (user_id = cookies.signed[:user_id])
 			#raise  # 8.50 The tests still pass, so this branch is currently untested
 			user = User.find_by(id: user_id)
@@ -28,13 +28,18 @@ module SessionsHelper
 		end		
 	end
 
+	# listing 9.24 - Returns true if the given user is the current user.
+  def current_user?(user)
+    user == current_user
+  end
+
 	# true is a user is logged in, false otherwise
 	def logged_in?
 		!current_user.nil?
 	end
 
 	# 14-10-02 ksw...to 'forget' a persistent session
-	#          when user when logs out
+	#          when user when logs out, Listing 8.39
   def forget(user)
   	user.forget
   	cookies.delete(:user_id)
@@ -44,8 +49,19 @@ module SessionsHelper
 	# 14-10-02 ksw...added destroy action for logging out
 	def log_out
 		forget(current_user)
-		session.delete(@user_id)
+		session.delete(:user_id)
 		@current_user = nil
+	end
+
+	# Redirects to stored location (or to the default).
+	def redirect_back_or(default)
+		redirect_to(session[:forwarding_url] || default)
+		session.delete(:forwarding_url)
+	end
+
+	# Stores the URL trying to be accessed.
+	def store_location
+		session[:forwarding_url] = request.url if request.get?
 	end
 
 	

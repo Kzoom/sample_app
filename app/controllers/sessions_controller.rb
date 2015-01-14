@@ -9,7 +9,9 @@ class SessionsController < ApplicationController
 	    log_in user  # _helper defined method 
 	    params[:session][:remember_me] == '1' ? remember(user) : forget(user)
 	    #remember user # _helper defined method, later replaced by line above
-	    redirect_to user  #Rails converts to user_path(user)
+	    #redirect_to user  #Rails converts to user_path(user)
+	    #per listing 9.29
+	    redirect_back_or user
 	  else
 	  	#create an error message.
 	  	flash.now[:danger] = 'Invalid email/password combination' #not quite right.

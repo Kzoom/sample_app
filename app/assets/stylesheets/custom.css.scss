@@ -227,3 +227,14 @@ input {
 	width: auto;
 	margin-left: 0;
 }
+
+/* Users Index (per listing 9.35)*/
+.users {
+	list-style: none;
+	margin: 0;
+	li {
+	  overflow: auto;
+	  padding: 10px 0;
+	  order-bottom: 1px solid $gray-lighter;
+	}
+}
